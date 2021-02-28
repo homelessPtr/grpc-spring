@@ -1,0 +1,12 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /core/event-service
+springdoc:
+  swagger-ui:
+    displayOperationId: true
+    doc-expansion: none
+service:
+  db-service:
+    host: localhost
+    port: 8081

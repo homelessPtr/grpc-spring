@@ -14,17 +14,7 @@ public class ServiceProperties {
     @Data
     public static class Service {
 
-        private boolean stub;
         private String host;
         private Integer port;
-        private String username;
-        private String password;
-        private Long connectTimeout;
-        private Long readTimeout;
-        private LoggerLevel loggerLevel = LoggerLevel.BASIC;
-
-        public enum LoggerLevel {
-            NONE, BASIC, FULL
-        }
     }
 }
