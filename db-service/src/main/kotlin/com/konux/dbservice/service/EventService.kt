@@ -19,7 +19,7 @@ class EventService(private val eventRepo: EventRepo) : SenderGrpc.SenderImplBase
     val logger : Logger = LoggerFactory.getLogger(EventService::class.java)
 
     override fun send(request: Event?, responseObserver: StreamObserver<BaseResponse>?) {
-        var baseResponse: BaseResponse? = null
+        val baseResponse: BaseResponse?
         if (request != null) {
             baseResponse = try {
                 logger.info("Event: {}", request)
