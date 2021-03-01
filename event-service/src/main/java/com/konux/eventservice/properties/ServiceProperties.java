@@ -13,7 +13,6 @@ public class ServiceProperties {
 
     @Data
     public static class Service {
-
         private String host;
         private Integer port;
     }
