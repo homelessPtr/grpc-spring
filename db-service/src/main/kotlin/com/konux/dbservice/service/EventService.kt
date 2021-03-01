@@ -19,9 +19,9 @@ class EventService(private val eventRepo: EventRepo) : SenderGrpc.SenderImplBase
     val logger : Logger = LoggerFactory.getLogger(EventService::class.java)
 
     override fun send(request: Event?, responseObserver: StreamObserver<BaseResponse>?) {
-        val baseResponse: BaseResponse? = null
+        var baseResponse: BaseResponse? = null
         if (request != null) {
-            try {
+            baseResponse = try {
                 logger.info("Event: {}", request)
                 val event = eventRepo.save(EventDO(
                         timestamp = request.timestamp,
@@ -39,7 +39,7 @@ class EventService(private val eventRepo: EventRepo) : SenderGrpc.SenderImplBase
     private fun buildSuccessResponse(id: Long?): BaseResponse =
             BaseResponse.newBuilder()
                     .setResult(SUCCESS)
-                    .setNote(id.toString()).build()
+                    .setNote(String.format("Event with id = %s created", id.toString())).build()
 
     private fun buildErrorResponse(exception: Exception): BaseResponse =
             BaseResponse.newBuilder()
