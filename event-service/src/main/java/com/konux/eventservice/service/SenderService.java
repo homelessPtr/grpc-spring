@@ -3,7 +3,7 @@ package com.konux.eventservice.service;
 import com.konux.eventservice.controller.model.BaseResponse;
 import com.konux.eventservice.controller.model.Event;
 import com.konux.eventservice.exception.RpcException;
-import com.konux.eventservice.proto.EventProto;
+import com.konux.proto.SenderGrpc;
 import io.grpc.StatusRuntimeException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SenderService implements ISenderService {
 
-    private final com.konux.eventservice.proto.SenderGrpc.SenderBlockingStub blockingStub;
+    private final SenderGrpc.SenderBlockingStub blockingStub;
 
     @Override
     public BaseResponse send(Event event) {
-        com.konux.eventservice.proto.BaseResponse response;
-        com.konux.eventservice.proto.Event req = com.konux.eventservice.proto.Event.newBuilder()
+        com.konux.proto.BaseResponse response;
+        com.konux.proto.Event req = com.konux.proto.Event.newBuilder()
                 .setTimestamp(event.getTimestamp())
                 .setUserId(event.getUserId())
                 .setEvent(event.getEvent()).build();
@@ -32,7 +32,7 @@ public class SenderService implements ISenderService {
         return convert(response);
     }
 
-    private BaseResponse convert(com.konux.eventservice.proto.BaseResponse response) {
+    private BaseResponse convert(com.konux.proto.BaseResponse response) {
         if (response != null)
         return BaseResponse.builder().result(response.getResult())
                 .note(response.getNote()).build();

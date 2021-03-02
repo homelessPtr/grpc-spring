@@ -2,9 +2,10 @@ package com.konux.dbservice.service
 
 import com.konux.dbservice.domainobject.EventDO
 import com.konux.dbservice.repo.EventRepo
-import com.konux.eventservice.proto.BaseResponse
-import com.konux.eventservice.proto.Event
-import com.konux.eventservice.proto.SenderGrpc
+import com.konux.proto.BaseResponse
+import com.konux.proto.Event
+import com.konux.proto.SenderGrpc
+
 import io.grpc.stub.StreamObserver
 import lombok.extern.slf4j.Slf4j
 import org.slf4j.Logger

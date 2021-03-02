@@ -1,7 +1,7 @@
 package com.konux.eventservice.config;
 
 import com.konux.eventservice.properties.ServiceProperties;
-import com.konux.eventservice.proto.SenderGrpc;
+import com.konux.proto.SenderGrpc;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class ProtobufConfig {
 
     @Bean
     public SenderGrpc.SenderBlockingStub senderBlockingStub(Channel channel) {
-        return  com.konux.eventservice.proto.SenderGrpc.newBlockingStub(channel);
+        return  com.konux.proto.SenderGrpc.newBlockingStub(channel);
     }
 
 }

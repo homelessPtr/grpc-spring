@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package model;
+
+option java_multiple_files = true;
+option java_package = "com.konux.proto";
+option java_outer_classname = "EventProto";
+
+service Sender {
+    rpc send (Event) returns (BaseResponse) {}
+}
+
+message Event {
+
+    int64  timestamp = 1;
+    int64 user_id = 2;
+    string event = 3;
+
+}
+
+message BaseResponse {
+
+    string result = 1;
+    string note = 2;
+
+}
