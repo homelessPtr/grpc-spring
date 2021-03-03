@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 
 
 @Slf4j
@@ -19,6 +20,7 @@ class EventService(private val eventRepo: EventRepo) : SenderGrpc.SenderImplBase
 
     val logger : Logger = LoggerFactory.getLogger(EventService::class.java)
 
+    @Transactional
     override fun send(request: Event?, responseObserver: StreamObserver<BaseResponse>?) {
         val baseResponse: BaseResponse?
         if (request != null) {
